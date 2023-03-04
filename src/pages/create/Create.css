@@ -31,3 +31,30 @@ background-color: #fff;
 border:1px solid #786fa6;
 color: #786fa6;
 }
+
+.categories {
+    display: flex;
+    align-items: center;
+  }
+
+  .categories input {
+    border-radius: 15px;
+    outline: none;
+      
+  }
+  .categories .btnAdd {
+    margin: 0 0 0 10px;
+    background-color:#574b90;
+    border-radius: 15px;
+  }
+
+  .categories .btnAdd:hover{
+    background-color:#303952;
+    border:0;
+    color:white
+  }
+
+  .list{
+      font-size: 0.9em;
+      color:#786fa6 !important;
+  }
