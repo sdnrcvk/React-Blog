@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import './Navbar.css'
 import React from 'react'
+import Searchbar from "./Searchbar";
 
 export default function Navbar() {
   return (
@@ -9,6 +10,7 @@ export default function Navbar() {
             <Link to="/" className="brand">
                 <h1>SC Blog</h1>
             </Link>
+            <Searchbar/>
             <Link to="/create">
                 Yeni Yazı
             </Link>
