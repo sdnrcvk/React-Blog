@@ -1,3 +1,4 @@
+import BlogList from '../../components/BlogList';
 import {useFetch} from '../../hooks/useFetch';
 import './Home.css'
 
@@ -11,9 +12,7 @@ export default function Home() {
             {hata && <p className="error">{hata}</p>}
             {yukleniyor && <p className="loading">Loading...</p>}
 			
-            {data && data.map(blog => (
-				    <h2 key={blog.id}>{blog.baslik}</h2>
-            ))}
+            {data && <BlogList bloglar={data}/>}
 			
       </div>
     )
