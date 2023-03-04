@@ -1,45 +1,44 @@
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-export const useFetch=(url)=>{
-    const [data,setData]=useState(null)
-    const [hata,setHata]=useState(null)
-    const [yukleniyor,setYukleniyor]=useState(false)
+export const useFetch = (url) => {
+    
+  const [data, setData] = useState(null)
+  const [yukleniyor, setYukleniyor] = useState(false)
+  const [hata, setHata] = useState(null)
 
-    useEffect(()=>{
+  useEffect(() => {
+    const controller = new AbortController()
 
-        const controller=new AbortController()
-        const fetchData=async ()=>{
-            setYukleniyor(true)
-            try {
-                const res=await fetch(url,{signal:controller.signal})
-                if(!res.ok){
-                    throw new Error(res.statusText)
-                }
-
-                const data=await res.json()
-                setYukleniyor(false)
-                setData(data)
-                setHata(null)
-                
-            } catch (error) {
-                if(error.name==="AbortError"){
-                    console.log('veri çekme iptal edildi')
-                }else{
-                    setYukleniyor(false)
-                    setHata('veriler çekilemedi')
-                }          
-            }
+    const fetchData = async () => {
+        setYukleniyor(true)
+      
+      try {
+        const res = await fetch(url, { signal: controller.signal })
+        if(!res.ok) {
+          throw new Error(res.statusText)
         }
+        const data = await res.json()
 
-        fetchData();
-
-        return ()=>{
-            controller.abort()
+        setYukleniyor(false)
+        setData(data)
+        setHata(null)
+      } catch (err) {
+        if (err.name === "AbortError") {
+          console.log("veri çekme işlemi iptal edildi")
+        } else {
+          setYukleniyor(false)
+          setHata('veriler çekilemedi')
         }
+      }
+    }
 
-    },[url])
+    fetchData()
 
-    return {data,yukleniyor,hata}
+    return () => {
+      controller.abort()
+    }
+
+  }, [url])
+
+  return { data, yukleniyor, hata }
 }
-
-
