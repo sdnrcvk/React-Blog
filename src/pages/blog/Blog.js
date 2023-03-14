@@ -1,5 +1,6 @@
 import {useParams} from 'react-router-dom';
 import {useFetch} from '../../hooks/useFetch';
+import { useTheme } from '../../hooks/useTheme';
 
 import './Blog.css'
 
@@ -7,11 +8,12 @@ export default function Blog() {
 
     const {id}=useParams()
     const url='http://localhost:8000/bloglar/'+id;
+    const {mode}=useTheme();
 
     const {hata,yukleniyor,data:blog}=useFetch(url);
 
     return (
-        <div className="blog">
+        <div className={`blog ${mode}`}>
             {hata && <p className="error">{hata}</p>}
             {yukleniyor && <p className="loading">{yukleniyor}</p>}
             {blog && (
