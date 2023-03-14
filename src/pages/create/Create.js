@@ -2,6 +2,8 @@ import { useState, useRef, useEffect  } from 'react'
 import './Create.css'
 import { useFetch } from '../../hooks/useFetch'
 import { useHistory } from 'react-router-dom'
+import { db } from '../../firebase/config'
+import { collection, addDoc } from 'firebase/firestore'
 
 export default function Create() {  
   const [baslik, setBaslik] = useState('')
@@ -10,20 +12,28 @@ export default function Create() {
   const [yeniKategori, setYeniKategori] = useState('')
   const [kategoriler, setKategoriler] = useState([])
   const kategoriInput = useRef(null)
-	const { postData, data, error } = useFetch('http://localhost:8000/bloglar', 'POST')
+	//const { postData, data, error } = useFetch('http://localhost:8000/bloglar', 'POST')
   const history = useHistory()
   
-  useEffect(() => {
-    if (data) {
-      history.push('/')
-    }
-  }, [data, history])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(baslik, icerik, okunmaSuresi)
-    console.log(...kategoriler)
-    postData({ baslik, kategoriler, icerik, okunmaSuresi: okunmaSuresi + ' dakika' })
+    // console.log(baslik, icerik, okunmaSuresi)
+    // console.log(...kategoriler)
+    
+    //postData({ baslik, kategoriler, icerik, okunmaSuresi: okunmaSuresi + ' dakika' })
+    const doc={baslik, kategoriler, icerik, okunmaSuresi: okunmaSuresi + ' dakika'};
+    const ref=collection(db,"bloglar");
+    
+    try {
+      await addDoc(ref,{
+        ...doc
+      })
+
+      history.push('/')
+    } catch (err) {
+      console.log(err);
+    }
 
   }
 
