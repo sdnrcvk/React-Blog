@@ -7,6 +7,7 @@ import Search from './pages/search/Search';
 import Navbar from './components/Navbar';
 import ThemeSelector from './components/ThemeSelector';
 import { useTheme } from './hooks/useTheme';
+import Update from './pages/update/Update';
 
 function App() {
 const {mode}=useTheme();
@@ -22,6 +23,9 @@ const {mode}=useTheme();
           </Route>
           <Route path='/create'>
             <Create/>
+          </Route>
+          <Route path='/update/:id'>
+            <Update/>
           </Route>
           <Route path='/search'>
             <Search/>
