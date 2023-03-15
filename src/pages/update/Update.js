@@ -72,12 +72,11 @@ export default function Update() {
     setKategoriler([]);
     updateDoc(ref, newData)
       .then(() => {
-        console.log('Belge başarıyla güncellendi!');
+        console.log('Yazı başarıyla güncellendi!');
         history.push('/');
       })
-      .catch((error) => {
-        console.error('Belge güncelleme hatası:', error);
-        setHata(true);
+      .catch((err) => {
+        setHata(err.message);
       })
       .finally(() => {
         setYukleniyor(false);
