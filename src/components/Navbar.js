@@ -9,7 +9,7 @@ export default function Navbar() {
 
   return (
     <div className="navbar" style={{background:bgColor}}>
-        <nav onClick={()=>changeColor("#c44569")}>
+        <nav onClick={()=>changeColor("#cf6a87")}>
             <Link to="/" className="brand">
                 <h1>SC Blog</h1>
             </Link>

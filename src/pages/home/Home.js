@@ -20,7 +20,7 @@ export default function Home() {
         getDocs(ref).then((snap)=>{
             //console.log(snap);
             if(snap.empty){
-                setHata("Bir hata oluştu")
+                setHata("Henüz yazınız yok")
                 setYukleniyor(false)
             }else{
                 let sonuclar=[];

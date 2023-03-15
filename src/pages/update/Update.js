@@ -35,12 +35,11 @@ export default function Update() {
           setKategoriler(kategoriler);
           setData(doc.data()); // Set the data state to the received data
         } else {
-          console.log('Belge bulunamadı!');
+          console.log('Yazı bulunamadı!');
         }
       })
-      .catch((error) => {
-        console.error('Belge getirme hatası:', error);
-        setHata(true);
+      .catch((err) => {
+        setHata(err.message);
       });
   }, [id]);
 
@@ -98,7 +97,7 @@ export default function Update() {
             value={yeniKategori}
             ref={kategoriInput}
             />
-            <button className="btnAdd btn" onClick={handleKategoriEkle} >değiştir</button>
+            <button className="btnAdd btn" onClick={handleKategoriEkle} >Değiştir</button>
           </div>
         </label>
         <p>Kategoriler:<span className="list"> {kategoriler.map(i => <em key={i}>{i}, </em>)}</span></p>

@@ -62,7 +62,7 @@ export default function Create() {
             value={yeniKategori}
             ref={kategoriInput}
             />
-            <button onClick={handleAdd} className="btnAdd btn">ekle</button>
+            <button onClick={handleAdd} className="btnAdd btn">Ekle</button>
           </div>
         </label>
         <p>Kategoriler:<span className="list"> {kategoriler.map(i => <em key={i}>{i}, </em>)}</span></p>
@@ -84,7 +84,7 @@ export default function Create() {
           <textarea 
             onChange={(e) => setIcerik(e.target.value)}
             value={icerik}
-      rows={5}
+            rows={5}
             required
           />
         </label>
